@@ -1,10 +1,10 @@
 package com.step.parking;
 
-public class Attendant {
+public class Assistant {
     private final Display display;
 
-    public Attendant() {
-        this.display = new Display();
+    public Assistant() {
+        this.display = Display.getDisplay();
     }
 
     public void informFull(ParkingLot parkingLot) {

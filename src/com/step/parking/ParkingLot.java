@@ -7,20 +7,29 @@ public class ParkingLot {
 
     private final List<Integer> parkingLot;
     private final int capacity;
-    private final Attendant attendant;
+    private Assistant assistant;
 
-    public ParkingLot(int capacity, Attendant attendant) {
+    public ParkingLot(int capacity) {
         this.parkingLot = new ArrayList<>();
         this.capacity = capacity;
-        this.attendant = attendant;
     }
 
     public int park(int carNumber) {
-        parkingLot.add(carNumber);
-        if (this.isFull()) {
-            attendant.informFull(this);
+        if (!this.isFull()) {
+            parkingLot.add(carNumber);
+        }
+        if (this.isFull() && this.hasAssistant()) {
+            assistant.informFull(this);
         }
         return this.parkingLot.indexOf(carNumber) + 1;
+    }
+
+    public void assign(Assistant assistant){
+       this.assistant = assistant;
+    }
+
+    private boolean hasAssistant(){
+        return this.assistant != null;
     }
 
     private boolean isFull() {

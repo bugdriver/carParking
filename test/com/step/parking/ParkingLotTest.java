@@ -9,16 +9,16 @@ import static org.mockito.Mockito.verify;
 class ParkingLotTest {
     @Test
     void shouldParkCarInParkingLotHavingEmptySpace() {
-        Attendant attendant = new Attendant();
-        ParkingLot parkingLot = new ParkingLot(1, attendant);
+        ParkingLot parkingLot = new ParkingLot(1);
         assertEquals(1,parkingLot.park(123));
     }
 
     @Test
     void shouldInformAttendantIfParkingLotFull() {
-        Attendant attendantMock = mock(Attendant.class);
-        ParkingLot parkingLot = new ParkingLot(1, attendantMock);
+        Assistant assistantMock = mock(Assistant.class);
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.assign(assistantMock);
         parkingLot.park(234);
-        verify(attendantMock).informFull(parkingLot);
+        verify(assistantMock).informFull(parkingLot);
     }
 }
