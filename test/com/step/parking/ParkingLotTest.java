@@ -15,10 +15,10 @@ class ParkingLotTest {
 
     @Test
     void shouldInformAttendantIfParkingLotFull() {
-        Assistant assistantMock = mock(Assistant.class);
+        ParkingLotListner parkingLotListnerMock = mock(ParkingLotListner.class);
         ParkingLot parkingLot = new ParkingLot(1);
-        parkingLot.assign(assistantMock);
+        parkingLot.assign(parkingLotListnerMock);
         parkingLot.park(234);
-        verify(assistantMock).informFull(parkingLot);
+        verify(parkingLotListnerMock).onFull(parkingLot);
     }
 }

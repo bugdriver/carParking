@@ -1,5 +1,5 @@
 package com.step.parking;
 
 public enum ParkingLotStatus {
-    FULL,EMPTY
+    FULL, EIGHTY_PERCENT_FULL, EMPTY
 }
