@@ -8,7 +8,17 @@ public class Assistant implements ParkingLotListener {
     }
 
     @Override
-    public void onStatusUpdate(ParkingLot parkingLot, Integer filledPercentage) {
-        this.display.update(parkingLot, filledPercentage);
+    public void onFull(int parkingLotId) {
+        this.display.update(parkingLotId, ParkingLotStatus.FULL_OCCUPIED);
+    }
+
+    @Override
+    public void onAlmostFull(int parkingLotId) {
+
+    }
+
+    @Override
+    public void onLessOccupied(int parkingLotId) {
+
     }
 }

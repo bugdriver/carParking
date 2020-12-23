@@ -17,20 +17,29 @@ class ParkingLotTest {
     void shouldInformAttendantIfParkingLotFull() {
         ParkingLotListener attendant = mock(ParkingLotListener.class);
         ParkingLot parkingLot = new ParkingLot(1);
-        parkingLot.assign(attendant, 100);
+        parkingLot.assign(attendant);
         parkingLot.park(234);
-        verify(attendant).onStatusUpdate(parkingLot, 100);
+        verify(attendant).onFull(parkingLot.hashCode());
     }
 
     @Test
     void shouldInformManagerIfParkingLotIs80percentFull() {
         ParkingLotListener manager = mock(ParkingLotListener.class);
         ParkingLot parkingLot = new ParkingLot(5);
-        parkingLot.assign(manager, 80);
+        parkingLot.assign(manager);
         parkingLot.park(1);
         parkingLot.park(2);
         parkingLot.park(3);
         parkingLot.park(4);
-        verify(manager).onStatusUpdate(parkingLot, 80);
+        verify(manager).onAlmostFull(parkingLot.hashCode());
+    }
+
+    @Test
+    void shouldInformManagerIfParkingLotIsLessOccupied() {
+        ParkingLotListener attendant = mock(ParkingLotListener.class);
+        ParkingLot parkingLot = new ParkingLot(5);
+        parkingLot.assign(attendant);
+        parkingLot.park(1);
+        verify(attendant).onLessOccupied(parkingLot.hashCode());
     }
 }

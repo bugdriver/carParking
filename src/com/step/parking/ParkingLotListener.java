@@ -1,5 +1,9 @@
 package com.step.parking;
 
 public interface ParkingLotListener {
-    void onStatusUpdate(ParkingLot parkingLot, Integer status);
+    void onFull(int parkingLotId);
+
+    void onAlmostFull(int parkingLotId);
+
+    void onLessOccupied(int parkingLotId);
 }
